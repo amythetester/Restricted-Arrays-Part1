@@ -1,7 +1,7 @@
-require 'minitest/autorun'
-require 'minitest/reporters'
-require_relative '../lib/restricted_array'
-require_relative '../lib/using_restricted_array'
+require "minitest/autorun"
+require "minitest/reporters"
+require_relative "../lib/restricted_array"
+require_relative "../lib/using_restricted_array"
 
 describe "restricted array" do
   it "length method" do
@@ -16,7 +16,7 @@ describe "restricted array" do
   it "linear search method - value exists in the middle, in the array" do
     size = 9
     my_integer_array = RestrictedArray.new(size)
-    value_to_find = 120
+    value_to_find = 220
     middle_index = size / 2
     my_integer_array[middle_index] = value_to_find
 
@@ -29,7 +29,7 @@ describe "restricted array" do
     size.times do |i|
       my_integer_array[i] = i
     end
-    value_to_find = 120
+    value_to_find = 220
     my_integer_array[size - 1] = value_to_find
 
     search(my_integer_array, size, value_to_find).must_equal true
@@ -41,7 +41,7 @@ describe "restricted array" do
     size.times do |i|
       my_integer_array[i] = i
     end
-    value_to_find = 120
+    value_to_find = 220
 
     search(my_integer_array, size, value_to_find).must_equal false
   end
@@ -171,7 +171,7 @@ describe "restricted array" do
     size.times do |i|
       my_integer_array[i] = i * 10
     end
-    value_to_find = (size/2) * 10
+    value_to_find = (size / 2) * 10
 
     binary_search(my_integer_array, size, value_to_find).must_equal true
   end
