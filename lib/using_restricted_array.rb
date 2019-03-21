@@ -11,7 +11,6 @@ require_relative "restricted_array.rb"
 def length(array)
   i = 0
   until array[i] == nil
-    # while array[i] != nil
     i += 1
   end
   return i
@@ -98,20 +97,9 @@ end
 
 # For an array sorted in ascending order, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
-# Time complexity: 1ogrithmic
+# Time complexity: logrithmic
 # Space complexity: ?
 def binary_search(array, length, value_to_find)
-  # While low index (0) is smaller than high index
-  # Mid = (low + high)/2
-  # This gives you the middle index
-  # Compare mid to search value
-  # If equal, return true
-  # If mid index value is greater
-  # Set high to mid - 1
-  # If mid index value is fewer
-  # Set low to mid + 1
-  # If value of low is the search value, return true
-  # Else return false
   low = 0
   high = length - 1
 
