@@ -1,4 +1,4 @@
-require_relative 'restricted_array.rb'
+require_relative "restricted_array.rb"
 # RestrictedArray can be created using a specified size, or a random size in
 # the range of 1-20 will be chosen for you.
 # All values are integers in the range of 1-221.
@@ -6,25 +6,42 @@ require_relative 'restricted_array.rb'
 
 # Calculates the length of the restricted array. All values are integers.
 # The restricted_array is terminated by 'nil' i.e. array[length] = nil
-# Time complexity: ?
-# Space complexity: ?
+# Time complexity: linear or O(n), where n is the number of items in the array
+# Space complexity: or the length of the input array
 def length(array)
-  raise NotImplementedError
+  i = 0
+  until array[i] == nil
+    # while array[i] != nil
+    i += 1
+  end
+  return i
 end
 
 # Prints each integer values in the array
-# Time complexity: ?
-# Space complexity: ?
+# Time complexity: ? linear, O(n)
+# Space complexity: ? O(1)
 def print_array(array)
-  raise NotImplementedError
+  len = length(array)
+  i = 0
+  while i < len
+    print array[i]
+    print ""
+    i += 1
+  end
+  return i
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
-# Time complexity: ?
-# Space complexity: ?
+# Big O - Always take the worst scenario, that the value is the end of the array.
+# Time complexity: O(n), where n is the number of values in the array
+# Space complexity: O(1)
 def search(array, length, value_to_find)
-  raise NotImplementedError
+  length.times do |i|
+    return true if array[i] == value_to_find
+  end
+
+  return false
 end
 
 # Finds and returns the largest integer value the array
@@ -32,7 +49,16 @@ end
 # Time complexity: ?
 # Space complexity: ?
 def find_largest(array, length)
-  raise NotImplementedError
+  largest = 0
+  i = 0
+  while i < length
+    if array[i] > largest
+      largest = array[i]
+    end
+    i += 1
+  end
+
+  return largest
 end
 
 # Finds and returns the smallest integer value in the array
@@ -40,22 +66,72 @@ end
 # Time complexity: ?
 # Space complexity: ?
 def find_smallest(array, length)
-  raise NotImplementedError
+  smallest = 221
+  i = 0
+  while i < length
+    if array[i] < smallest
+      smallest = array[i]
+    end
+    i += 1
+  end
+
+  return smallest
 end
 
 # Reverses the values in the integer array in place
 # Time complexity: ?
 # Space complexity: ?
 def reverse(array, length)
-  raise NotImplementedError
+  i = 0
+  j = length - 1
+
+  while i < j
+    array_value = array[j]
+    array[j] = array[i]
+    array[i] = array_value
+    i += 1
+    j -= 1
+  end
+
+  return array
 end
 
 # For an array sorted in ascending order, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
-# Time complexity: ?
+# Time complexity: 1ogrithmic
 # Space complexity: ?
 def binary_search(array, length, value_to_find)
-  raise NotImplementedError
+  # While low index (0) is smaller than high index
+  # Mid = (low + high)/2
+  # This gives you the middle index
+  # Compare mid to search value
+  # If equal, return true
+  # If mid index value is greater
+  # Set high to mid - 1
+  # If mid index value is fewer
+  # Set low to mid + 1
+  # If value of low is the search value, return true
+  # Else return false
+  low = 0
+  high = length - 1
+
+  while low < high
+    mid = (low + high) / 2
+
+    if array[mid] == value_to_find
+      return true
+    elsif array[mid] > value_to_find
+      high = mid - 1
+    elsif array[mid] < value_to_find
+      low = mid + 1
+    end
+
+    if array[low] == value_to_find || array[high] == value_to_find
+      return true
+    else
+      return false
+    end
+  end
 end
 
 # Helper method provided to sort the array in ascending order
@@ -75,7 +151,7 @@ end
 def sort(array, length)
   length.times do |index| # outer loop - n elements
     min_index = index # assume index is where the next minimally value is
-    temp_index = index+1 # compare with values at index+1 to length-1
+    temp_index = index + 1 # compare with values at index+1 to length-1
     while temp_index < length # inner loop - n-1 elements
       if array[temp_index] < array[min_index] # found a new minimum, update min_index
         min_index = temp_index
@@ -89,4 +165,5 @@ def sort(array, length)
     end
   end
 end
+
 ## --- END OF METHODS ---
